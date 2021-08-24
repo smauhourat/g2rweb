@@ -42,13 +42,13 @@
         } else {
             // Set a 500 (internal server error) response code.
             http_response_code(500);
-            echo "Lo sentimos! Ocurrio un problema y su mensaje no ha podido ser enviado.";
+            echo "Lo sentimos! Ocurrio un problema y su mensaje no ha podido ser enviado.500";
         }
 
     } else {
         // Not a POST request, set a 403 (forbidden) response code.
         http_response_code(403);
-        echo "Lo sentimos! Ocurrio un problema y su mensaje no ha podido ser enviado.";
+        echo "Lo sentimos! Ocurrio un problema y su mensaje no ha podido ser enviado.403";
     }
 
 ?>
