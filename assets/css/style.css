@@ -2215,3 +2215,15 @@ p {
       float: right; }
 
 /*# sourceMappingURL=style.css.map */
+
+.ul-medioambiente
+{
+  list-style-type: disc !important;
+  padding-left: 1em; 
+  padding-top:1em;
+}
+
+.ul-medioambiente li
+{
+  padding-top:0.25em;
+}
