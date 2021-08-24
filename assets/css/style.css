@@ -119,10 +119,12 @@ p {
 .text-logo {
   font-family: 'Montserrat', sans-serif;  
   color:#000000;
+  font-display: swap;
 }
 .text-logo-nro {
   font-family: 'Montserrat', sans-serif;  
   color:#22AAE2;
+  font-display: swap;
 }
 
 .bg_cover {
