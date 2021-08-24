@@ -50,5 +50,5 @@ $estadoEnvio = $mail->Send();
 if($estadoEnvio){
     echo "El correo fue enviado correctamente.";
 } else {
-    echo "Ocurrió un error inesperado.";
+    echo "Ocurrió un error inesperado, por favor intente mas tarde.";
 }

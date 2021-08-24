@@ -1,11 +1,12 @@
 $(function() {
 
 	// Get the form.
-	var form = $('#ajax-contact');
+	var form = $('#contact-form');
+	debugger;
+    
 
 	// Get the messages div.
 	var formMessages = $('#form-messages');
-	var formMessagesModal = $('#form-messages-modal');
 
 	// Set up an event listener for the contact form.
 	$(form).submit(function(e) {
@@ -22,18 +23,14 @@ $(function() {
 			data: formData
 		})
 		.done(function(response) {
+			debugger;
 			// Make sure that the formMessages div has the 'success' class.
 			$(formMessages).removeClass('error');
 			$(formMessages).addClass('success');
 			$(formMessages).show('');
 
-			$(formMessagesModal).removeClass('error');
-			$(formMessagesModal).addClass('success');
-			$(formMessagesModal).show('');			
-			
 			// Set the message text.
 			$(formMessages).text(response);
-			$(formMessagesModal).text(response);
 			
 			// Clear the form.
 			$('#name').val('');
@@ -46,25 +43,41 @@ $(function() {
 			$(formMessages).addClass('error');
 			$(formMessages).show('');
 
-			$(formMessagesModal).removeClass('success');
-			$(formMessagesModal).addClass('error');
-			$(formMessagesModal).show('');
-			
 			// Set the message text.
 			if (data.responseText !== '') {
 				$(formMessages).text(data.responseText);
 			} else {
 				$(formMessages).text('Oops! An error occured and your message could not be sent.');
 			}
-			
-			// Set the message text.
-			if (data.responseText !== '') {
-				$(formMessagesModal).text(data.responseText);
-			} else {
-				$(formMessagesModal).text('Oops! An error occured and your message could not be sent.');
-			}
 		});
 
 	});
 
 });
+
+// function validateContact() {
+//     var valid = true;	
+//     // //$(".demoInputBox").css('background-color','');
+//     // $(".info").html('');
+//     // if(!$("#name").val()) {
+//     //     $("#name-info").html("(required)");
+//     //     $("#name").css('background-color','#FFFFDF');
+//     //     valid = false;
+//     // }
+//     // if(!$("#email").val()) {
+//     //     $("#email-info").html("(required)");
+//     //     $("#email").css('background-color','#FFFFDF');
+//     //     valid = false;
+//     // }
+//     // // if(!$("#email").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+//     // //     $("#email-info").html("(invalid)");
+//     // //     $("#email").css('background-color','#FFFFDF');
+//     // //     valid = false;
+//     // // }
+//     // if(!$("#message").val()) {
+//     //     $("#message-info").html("(required)");
+//     //     $("#message").css('background-color','#FFFFDF');
+//     //     valid = false;
+//     // }
+//     return valid;
+// }

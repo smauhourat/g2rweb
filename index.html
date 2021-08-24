@@ -942,34 +942,39 @@
                     <div class="contact-wrapper-form pt-115  wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.5s">
                         <h4 class="contact-title pb-10"><i class="lni-envelope"></i> Dejanos <span>Un Mensaje.</span></h4>
                         
-                        <form id="contact-form" action="includes/contact-form/contacto.php" method="post">
+                        <!-- <form id="contact-form" action="includes/contact-form/contacto.php" method="post"> -->
+                        <div id="contact-form">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="contact-form mt-45">
-                                        <label>Ingresa Tu Nombre</label>
-                                        <input type="text" name="name" placeholder="Nombre Completo">
+                                    <div class="contact-form mt-25">
+                                        <label>Ingresa Tu Nombre</label><span id="name-info" class="text-danger"></span>
+                                        <input type="text" name="name" id="name" placeholder="Nombre Completo">
                                     </div> <!-- contact-form -->
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="contact-form mt-45">
-                                        <label>Ingresa Tu Email</label>
-                                        <input type="email" name="email" placeholder="Email">
+                                    <div class="contact-form mt-25">
+                                        <label>Ingresa Tu Email</label><span id="email-info" class="text-danger"></span>
+                                        <input type="email" name="email" id="email" placeholder="Email">
                                     </div> <!-- contact-form -->
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="contact-form mt-45">
-                                        <label>Tu Mensaje</label>
-                                        <textarea name="message" placeholder="Ingresa tu mensaje..."></textarea>
+                                    <div class="contact-form mt-25">
+                                        <label>Tu Mensaje</label><span id="message-info" class="text-danger"></span>
+                                        <textarea name="message" id="message" placeholder="Ingresa tu mensaje..."></textarea>
                                     </div> <!-- contact-form -->
                                 </div>
-                                <p class="form-message"></p>
+                                <!-- <p class="form-message"></p> -->
                                 <div class="col-md-12">
                                     <div class="contact-form mt-45">
-                                        <button type="submit" class="main-btn">Enviar</button>
+                                        <button type="submit" class="main-btn" onClick="sendContact();">Enviar</button>
                                     </div> <!-- contact-form -->
+                                    <div class="mt-25 clearfix"></div>
+                                    <div id="form-messages"></div>
                                 </div>
                             </div> <!-- row -->
-                        </form>
+                        <!-- </form> -->
+                        </div>
+                        
                     </div> <!-- contact wrapper form -->
                 </div>
             </div> <!-- row -->
@@ -1095,6 +1100,9 @@
     
     <!--====== Main js ======-->
     <script src="assets/js/main.js"></script>
+
+    <!--====== Mail js ======-->
+    <script src="includes/contact-form/app2.js"></script>    
     
 </body>
 
