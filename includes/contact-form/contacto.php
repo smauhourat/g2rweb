@@ -20,7 +20,7 @@ $smtpUsuario = "web@g2r.com.ar";  // Mi cuenta de correo
 $smtpClave = "G3rman73/";  // Mi contraseña
 
 // Email donde se enviaran los datos cargados en el formulario de contacto
-$emailDestino = "test@g2r.com.ar";
+$emailDestino = "info@g2r.com.ar";
 
 $mail = new PHPMailer();
 $mail->IsSMTP();
