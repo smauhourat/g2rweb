@@ -1,83 +1,75 @@
-$(function() {
 
-	// Get the form.
-	var form = $('#contact-form');
-	debugger;
+function sendContact() {
+    cleanAlerts();
+    var valid;	
+    valid = validateContact();
     
+    if(valid) {
+        jQuery.ajax({
+			url: 'includes/contact-form/contacto.php',
+			data:'name='+$("#name").val()+'&email='+
+            $("#email").val()+'&message='+
+            $(message).val(),
+            type: "POST",
+            success:function(data){
+                $("#form-messages").html(data);
+                
+                $("#form-messages").delay(1000).fadeIn(500);
+                if (data.includes('error'))
+                    $("#form-messages").toggleClass('alert alert-danger');
+                else
+                    $("#form-messages").toggleClass('alert alert-success');
+                
+                $("#form-messages").delay(1000).fadeOut(500);
+                
+                cleanInputs();
+            },
+            error:function (){
+                cleanInputs();
+            }
+        });
+    }
+}
 
-	// Get the messages div.
-	var formMessages = $('#form-messages');
+function cleanAlerts() {
+    $("#form-messages").html('');
+    $("#form-messages").removeClass('alert alert-success');
+    $("#form-messages").removeClass('alert alert-danger');
+}
 
-	// Set up an event listener for the contact form.
-	$(form).submit(function(e) {
-		// Stop the browser from submitting the form.
-		e.preventDefault();
+function cleanInputs() {
+    $('#name').val('');
+    $('#email').val('');
+    $('#message').val('');
+}
 
-		// Serialize the form data.
-		var formData = $(form).serialize();
-
-		// Submit the form using AJAX.
-		$.ajax({
-			type: 'POST',
-			url: $(form).attr('action'),
-			data: formData
-		})
-		.done(function(response) {
-			debugger;
-			// Make sure that the formMessages div has the 'success' class.
-			$(formMessages).removeClass('error');
-			$(formMessages).addClass('success');
-			$(formMessages).show('');
-
-			// Set the message text.
-			$(formMessages).text(response);
-			
-			// Clear the form.
-			$('#name').val('');
-			$('#email').val('');
-			$('#message').val('');
-		})
-		.fail(function(data) {
-			// Make sure that the formMessages div has the 'error' class.
-			$(formMessages).removeClass('success');
-			$(formMessages).addClass('error');
-			$(formMessages).show('');
-
-			// Set the message text.
-			if (data.responseText !== '') {
-				$(formMessages).text(data.responseText);
-			} else {
-				$(formMessages).text('Oops! An error occured and your message could not be sent.');
-			}
-		});
-
-	});
-
-});
-
-// function validateContact() {
-//     var valid = true;	
-//     // //$(".demoInputBox").css('background-color','');
-//     // $(".info").html('');
-//     // if(!$("#name").val()) {
-//     //     $("#name-info").html("(required)");
-//     //     $("#name").css('background-color','#FFFFDF');
-//     //     valid = false;
-//     // }
-//     // if(!$("#email").val()) {
-//     //     $("#email-info").html("(required)");
-//     //     $("#email").css('background-color','#FFFFDF');
-//     //     valid = false;
-//     // }
-//     // // if(!$("#email").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
-//     // //     $("#email-info").html("(invalid)");
-//     // //     $("#email").css('background-color','#FFFFDF');
-//     // //     valid = false;
-//     // // }
-//     // if(!$("#message").val()) {
-//     //     $("#message-info").html("(required)");
-//     //     $("#message").css('background-color','#FFFFDF');
-//     //     valid = false;
-//     // }
-//     return valid;
-// }
+function validateContact() {
+    var valid = true;	
+    $("#name-info").html('');
+    $("#name").css('background-color','');
+    if(!$("#name").val()) {
+        $("#name-info").html("(Campo Requerido)");
+        $("#name").css('background-color','#FFFFDF');
+        valid = false;
+    }
+    $("#email-info").html('');
+    $("#email").css('background-color','');
+    if(!$("#email").val()) {
+        $("#email-info").html("(Campo Requerido)");
+        $("#email").css('background-color','#FFFFDF');
+        valid = false;
+    }
+    if(!$("#email").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+        $("#email-info").html("(mail invalido)");
+        $("#email").css('background-color','#FFFFDF');
+        valid = false;
+    }
+    $("#message-info").html('');
+    $("#message").css('background-color','');
+    if(!$("#message").val()) {
+        $("#message-info").html("(Campo Requerido)");
+        $("#message").css('background-color','#FFFFDF');
+        valid = false;
+    }
+    return valid;
+}
